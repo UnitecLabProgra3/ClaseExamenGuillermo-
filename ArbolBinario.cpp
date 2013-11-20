@@ -41,13 +41,13 @@ bool ArbolBinario::exists(NodoArbol*padre,int numero)
 
 int ArbolBinario::getSize(NodoArbol*padre)
 {
-    int tam = 0;
+    int temp = 0;
     if(padre != NULL)
     {
-        tam+=1;
-        tam+=getSize(padre->hijo_izq) + getSize(padre->hijo_der);
+        temp+=1;
+        temp+=getSize(padre->hijo_izq) + getSize(padre->hijo_der);
     }
-    return tam;
+    return temp;
 }
 
 ArbolBinario::~ArbolBinario()
