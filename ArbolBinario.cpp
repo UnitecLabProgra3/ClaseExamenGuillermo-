@@ -30,36 +30,24 @@ void ArbolBinario::imprimir(NodoArbol* padre)
 
 bool ArbolBinario::exists(NodoArbol*padre,int numero)
 {
-    bool verdad=false;
-    if (padre==NULL)
-        return verdad;
-
-        if (padre->numero==numero){
-           verdad=true;
-            return verdad;
-        }
-
-
-
-        exists(padre->hijo_der,numero);
-        exists(padre->hijo_izq,numero);
-
-
-    //ToDo
-    return verdad;
+    if(padre == NULL)
+        return false;
+    if(padre->numero == numero)
+        return true;
+    else
+        return exists(padre->hijo_izq, numero) || exists(padre->hijo_der, numero);
+    return false;
 }
 
 int ArbolBinario::getSize(NodoArbol*padre)
 {
-int acumulador=0;
-if(padre==NULL)
-    return acumulador;
-
-    acumulador=getSize(padre->hijo_der)+1;
-    acumulador=getSize(padre->hijo_izq)+1;
-
-    return acumulador;
-
+    int tam = 0;
+    if(padre != NULL)
+    {
+        tam+=1;
+        tam+=getSize(padre->hijo_izq) + getSize(padre->hijo_der);
+    }
+    return tam;
 }
 
 ArbolBinario::~ArbolBinario()

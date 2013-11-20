@@ -47,17 +47,47 @@ void Lista::agregarNodo(Nodo*nodo,int pos)
 
 void Lista::imprimirLista()
 {
-    //ToDo
+    if(inicio == NULL)
+        return;
+    Nodo*temp = inicio;
+    cout<<temp->nombre<<"\t"<<temp->score<<endl;
+    while(temp->siguiente != NULL)
+    {
+        cout<<temp->siguiente->nombre<<"\t"<<temp->siguiente->score<<endl;
+        temp = temp->siguiente;
+    }
 }
 
 void Lista::leerLista()
 {
-    //ToDo
+    ifstream in("scores.txt");
+
+    while(!in.eof())
+    {
+        string nombre;
+        int puntaje;
+        in>>nombre;
+        in>>puntaje;
+        if(nombre != "" && puntaje != NULL)
+            agregarNodo(new Nodo(nombre, puntaje));
+        nombre = "";
+        puntaje = NULL;
+    }
 }
 
 void Lista::escribirLista()
 {
-    //ToDo
+    ofstream out("scores.txt");
+    out.app;
+    if(inicio == NULL)
+        return;
+    Nodo*temp = inicio;
+    out<<temp->nombre<<" "<<temp->score<<endl;
+    while(temp->siguiente != NULL)
+    {
+        out<<temp->siguiente->nombre<<" "<<temp->siguiente->score<<endl;
+        temp = temp->siguiente;
+    }
 }
 
 Lista::~Lista()
